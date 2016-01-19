@@ -1,6 +1,6 @@
 package env
 
-import logicalguess.data.movielens.MovieLens_1m
+import logicalguess.data.movielens.{MovieLens_100k, MovieLens_1m}
 import org.apache.log4j.{Level, Logger}
 import org.apache.spark.{SparkConf, SparkContext}
 
@@ -11,7 +11,8 @@ object Config {
 
   val conf = new SparkConf().setAppName("SparkRecommender").setMaster("local[2]").set("spark.executor.memory","1g")
   val sc = new SparkContext(conf)
-  val dataProvider = MovieLens_1m("src/main/resources/ml-1m")
+  //val dataProvider = MovieLens_1m("src/main/resources/ml-1m")
+  val dataProvider = MovieLens_100k("src/main/resources/ml-100k")
 
 
 }

@@ -25,12 +25,12 @@ case class MovieLens_1m(dataDirectoryPath: String) extends DataProvider{
   }
 
   protected def loadProductNames(dataDirectoryPath: String): Map[Int, String] = {
-    val movies = env.Config.sc.textFile(dataDirectoryPath + "/movies.dat").map { line =>
+    val names = env.Config.sc.textFile(dataDirectoryPath + "/movies.dat").map { line =>
       val fields = line.split("::")
       // format: (movieID, movieName)
       (fields(0).toInt, fields(1))
     }.collect.toMap
-    movies
+    names
   }
 
   protected def check() = {
