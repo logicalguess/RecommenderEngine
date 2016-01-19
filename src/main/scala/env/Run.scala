@@ -7,7 +7,7 @@ import logicalguess.recommender.als.ALSRecommender
   */
 object Run extends App {
 
-  val recommender = new ALSRecommender(12, 0.01, 10)
+  val recommender = ALSRecommender(12, 0.01, 10)
 
   val userId = 1
   val recommendations = recommender.recommendForUser(userId)

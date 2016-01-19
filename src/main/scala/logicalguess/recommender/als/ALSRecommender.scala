@@ -10,7 +10,7 @@ import org.apache.spark.rdd.RDD
  * @param lambda The regularization parameter
  * @param numIterations The number of iterations to run
  */
-class ALSRecommender(rank: Int, lambda: Double, numIterations: Int) extends Recommender {
+case class ALSRecommender(rank: Int, lambda: Double, numIterations: Int) extends Recommender {
 
   val sc = env.Config.sc
   val dataProvider  = env.Config.dataProvider
