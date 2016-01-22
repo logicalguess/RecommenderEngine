@@ -43,9 +43,9 @@ case class ALSRecommender(rank: Int, lambda: Double, numIterations: Int) extends
   }
 
 
-  override def recommendForUser(userID: Int, numberOfRecommendedProducts: Int) = {
+  override def recommendForUser(userId: Int, numberOfRecommendedProducts: Int) = {
     val userRatings = {
-      val ratings = ratingsGroupedByUser.lookup(userID)
+      val ratings = ratingsGroupedByUser.lookup(userId)
       if (ratings.length <= 0) {
         throw new UserNotFoundException
       }
@@ -56,7 +56,7 @@ case class ALSRecommender(rank: Int, lambda: Double, numIterations: Int) extends
     val candidates = sc.parallelize(items.keys.filter(!ratedProducts.contains(_)).toSeq)
 
     val recommendations = model
-      .predict(candidates.map((userID, _)))
+      .predict(candidates.map((userId, _)))
       .collect
       .sortBy(-_.rating)
       .take(numberOfRecommendedProducts)

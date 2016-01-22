@@ -1,13 +1,15 @@
 package env
 
 import logicalguess.recommender.als.ALSRecommender
+import logicalguess.recommender.mahout.MahoutRecommender
 
 /**
   * Created by logicalguess on 1/18/16.
   */
 object Run extends App {
 
-  val recommender = ALSRecommender(12, 0.01, 10)
+  //val recommender = ALSRecommender(12, 0.01, 10)
+  val recommender = MahoutRecommender()
 
   val userId = 1
   val recommendations = recommender.recommendForUser(userId)
