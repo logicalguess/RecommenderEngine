@@ -23,4 +23,6 @@ trait Recommender extends Serializable {
    * @return Ratings with recommended products
    */
   def recommendForUser(userId: Int, numberOfRecommendedProducts: Int = 10): Seq[Rating]
+
+  def evaluate() : Double = -1
 }

@@ -8,13 +8,18 @@ import logicalguess.recommender.mahout.MahoutRecommender
   */
 object Run extends App {
 
-  //val recommender = ALSRecommender(12, 0.01, 10)
-  val recommender = MahoutRecommender()
+  val dataProvider  = env.Config.dataProvider
+
+  //val recommender = ALSRecommender(dataProvider, 12, 0.01, 10)
+  val recommender = MahoutRecommender(dataProvider)
 
   val userId = 1
   val recommendations = recommender.recommendForUser(userId)
 
   println("Recommendations for user " + userId)
-  recommendations.foreach(println)
+  val productNames = dataProvider.getProductNames()
+  recommendations.foreach(r => println(productNames(r.product), r.rating))
 
+  println("Evaluator results")
+  println(recommender.evaluate())
 }

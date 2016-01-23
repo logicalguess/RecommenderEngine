@@ -1,5 +1,6 @@
 package logicalguess.recommender.als
 
+import logicalguess.data.DataProvider
 import logicalguess.recommender.Recommender
 import org.apache.spark.mllib.recommendation.{ALS, MatrixFactorizationModel, Rating}
 import org.apache.spark.rdd.RDD
@@ -10,13 +11,12 @@ import org.apache.spark.rdd.RDD
  * @param lambda The regularization parameter
  * @param numIterations The number of iterations to run
  */
-case class ALSRecommender(rank: Int, lambda: Double, numIterations: Int) extends Recommender {
+case class ALSRecommender(dataProvider: DataProvider, rank: Int, lambda: Double, numIterations: Int) extends Recommender {
 
   val sc = env.Config.sc
-  val dataProvider  = env.Config.dataProvider
   val items = dataProvider.getProductNames()
   val ratings = dataProvider.getRatings()
-  val ratingsGroupedByUser = ratings.map(rat => (rat.user, rat)).groupByKey().persist()
+  val ratingsGroupedByUser = ratings.map(rating => (rating.user, rating)).groupByKey().persist()
   val model = train()
 
   protected def train(userRatingsForRecommendationRDD: Option[RDD[Rating]] = None): MatrixFactorizationModel = {
@@ -51,7 +51,7 @@ case class ALSRecommender(rank: Int, lambda: Double, numIterations: Int) extends
       }
       ratings(0)
     }
-    val ratedProducts = userRatings.map(rat => rat.product).toList
+    val ratedProducts = userRatings.map(rating => rating.product).toList
 
     val candidates = sc.parallelize(items.keys.filter(!ratedProducts.contains(_)).toSeq)
 
