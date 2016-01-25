@@ -1,4 +1,4 @@
-package logicalguess.recommender.als.samples
+package logicalguess.samples.als
 
 import org.apache.log4j.{Level, Logger}
 import org.apache.spark.mllib.recommendation.{ALS, MatrixFactorizationModel, Rating}

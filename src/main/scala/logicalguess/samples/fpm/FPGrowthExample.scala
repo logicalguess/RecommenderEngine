@@ -16,13 +16,12 @@
  */
 
 // scalastyle:off println
-package logicalguess.recommender.fpm.samples
+package logicalguess.samples.fpm
 
-import logicalguess.recommender.als.samples.AbstractParams
-import scopt.OptionParser
-
-import org.apache.spark.{SparkConf, SparkContext}
+import logicalguess.samples.AbstractParams
 import org.apache.spark.mllib.fpm.FPGrowth
+import org.apache.spark.{SparkConf, SparkContext}
+import scopt.OptionParser
 
 /**
   * Example for mining frequent itemsets using FP-growth.

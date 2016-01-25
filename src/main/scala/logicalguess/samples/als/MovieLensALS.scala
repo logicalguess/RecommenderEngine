@@ -16,8 +16,9 @@
  */
 
 // scalastyle:off println
-package logicalguess.recommender.als.samples
+package logicalguess.samples.als
 
+import logicalguess.samples.AbstractParams
 import org.apache.log4j.{Level, Logger}
 import org.apache.spark.mllib.recommendation.{ALS, MatrixFactorizationModel, Rating}
 import org.apache.spark.rdd.RDD

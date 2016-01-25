@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package logicalguess.recommender.als.samples
+package logicalguess.samples
 
 import scala.reflect.runtime.universe._
 
