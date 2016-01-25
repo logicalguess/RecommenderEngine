@@ -1,6 +1,5 @@
 package env
 
-import logicalguess.recommender.als.ALSRecommender
 import logicalguess.recommender.mahout.MahoutRecommender
 
 /**
